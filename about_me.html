@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iev: about me</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q9F75ZM/0fdb0bee-e9ac-44c3-a716-19a78aa33697.png"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: #000;
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+            color: #ccc;
+            margin: 70px;
+            padding: 70px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 80px 10px 80px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .search input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search img {
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .header-photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, #1b1b1b, #222);
+            border-bottom: 3px solid #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .about-me h2 {
+            margin-bottom: 10px;
+        }
+
+        .about-me p {
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0073e6;
+            text-decoration: none;
+            padding-right: 10px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+            border-color: #0073e6;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar li {
+            position: relative;
+        }
+
+        .navbar li a, .dropbtn {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar li a:hover, .dropbtn:hover {
+            background-color: #575757;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, a {
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0 20px 10px 20px;
+            }
+
+            .container {
+                flex-direction: column;
+                padding: 0 10px;
+            }
+
+            .left-column, .right-column {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+
+            .right-column {
+                margin-left: 0;
+            }
+        }
+
+        .row > .column {
+            padding: 0 8px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+            background-color: #434d94;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #434d94;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .container_mc-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invisible-container {
+            width: 10px; /* Adjust width as needed */
+            height: 300px; /* Match height with container_mc */
+            visibility: hidden;
+        }
+
+        .container_mc {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 500px;
+            height: 300px;
+            background-color: #222222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .photo_mc {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transition: all 0.5s ease;
+        }
+
+        .hidden-text_mc {
+            position: absolute;
+            width: 100%;
+            bottom: 10px;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .container_mc:hover .photo_mc {
+            position: static;
+            margin: 0 5px;
+        }
+
+        .container_mc:hover .hidden-text_mc {
+            opacity: 1;
+        }
+
+        .photo-wrapper_mc {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Dotted border */
+        hr.dotted {
+            border-top: 3px dotted #bbb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.ibb.co/YjhT2WJ/Untitled2-20240612232545.png" alt="Logo">
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Does It Work...">
+            <img src="https://i.ibb.co/5Fs4VVK/Untitled4-20240612233636.png" alt="Search Icon">
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">home</a>
+        <a href="about_me.html">about me</a>
+        <a href="blog.html">blog</a>
+        <a href="gallery.html">gallery</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">more
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="art.html">art</a>
+                <a href="record_store.html">record store</a>
+                <a href="video_store.html">video store</a>
+            </div>
+        </div> 
+    </div>
+
+    <!-- Header Photo -->
+    <img src="https://i.ibb.co/SQnBZQd/Untitled-design-23.jpg" alt="Header Photo" class="header-photo">
+
+    <hr class="dotted">
+
+    <!-- Invisible Container and Main Container -->
+    <div class="container_mc-wrapper">
+        <div class="invisible-container"></div>
+        <div class="container_mc">
+            <div class="photo-wrapper_mc">
+                <img src="https://i.ibb.co/vL6s0XY/3.png" class="photo_mc" alt="Photo 1">
+                <img src="https://i.ibb.co/cF47vB5/2.png" class="photo_mc" alt="Photo 2">
+                <img src="https://i.ibb.co/6JvPRZc/1.png" class="photo_mc" alt="Photo 3">
+            </div>
+            <div class="hidden-text_mc">looking for @mortalprojections? enter the <a href="the_void.html" style="color: white; text-decoration: underline;">void</a>.</div>
+        </div>
+    </div>
+
+    <hr class="dotted">
+
+    <!-- Main Container -->
+    <main></main>
+
+    <!-- Scripts -->
+    <script>
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("dropdown-menu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Dropdown Functionality
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+
+       const photos_mc = document.querySelectorAll('.photo_mc');
+        let moving_mc = true;
+
+        function randomPosition_mc(element_mc) {
+            const container_mc = document.querySelector('.container_mc');
+            const containerRect_mc = container_mc.getBoundingClientRect();
+            const elementRect_mc = element_mc.getBoundingClientRect();
+
+            const maxX_mc = containerRect_mc.width - elementRect_mc.width;
+            const maxY_mc = containerRect_mc.height - elementRect_mc.height;
+
+            const randomX_mc = Math.floor(Math.random() * maxX_mc);
+            const randomY_mc = Math.floor(Math.random() * maxY_mc);
+
+            element_mc.style.top = `${randomY_mc}px`;
+            element_mc.style.left = `${randomX_mc}px`;
+        }
+
+        function movePhotos_mc() {
+            if (!moving_mc) return;
+            photos_mc.forEach(photo_mc => {
+                randomPosition_mc(photo_mc);
+            });
+        }
+
+        setInterval(movePhotos_mc, 1000);
+
+        document.querySelector('.container_mc').addEventListener('mouseover', () => {
+            moving_mc = false;
+            const wrapper_mc = document.querySelector('.photo-wrapper_mc');
+            wrapper_mc.style.display = 'flex';
+            wrapper_mc.style.justifyContent = 'center';
+            photos_mc.forEach(photo_mc => {
+                photo_mc.style.position = 'static';
+            });
+        });
+
+        document.querySelector('.container_mc').addEventListener('mouseleave', () => {
+            moving_mc = true;
+            photos_mc.forEach(photo_mc => {
+                photo_mc.style.position = 'absolute';
+            });
+        });
+    </script>
+</body>
+</html>

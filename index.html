@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iev: home</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/Q9F75ZM/0fdb0bee-e9ac-44c3-a716-19a78aa33697.png"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: #000;
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+            color: #ccc;
+            margin: 70px;
+            padding: 70px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 80px 10px 80px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .search input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search img {
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .header-photo {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .left-column, .right-column {
+            background-color: #222;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            color: #ccc;
+        }
+
+        .left-column {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .right-column {
+            flex: 1;
+            margin-left: 60px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .about-me h2 {
+            margin-bottom: 10px;
+        }
+
+        .about-me p {
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0073e6;
+            text-decoration: none;
+            padding-right: 10px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+            border-color: #0073e6;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar li {
+            position: relative;
+        }
+
+        .navbar li a, .dropbtn {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar li a:hover, .dropbtn:hover {
+            background-color: #575757;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .player .album-cover img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .player .stats, .player .artist {
+            margin-top: 10px;
+        }
+
+        .player .playlist {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .player .playlist ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .player .playlist li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        
+        }
+
+        h1, h2, h3, h4, h5, h6, p, a {
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+        }
+
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0 20px 10px 20px;
+            }
+
+            .container {
+                flex-direction: column;
+                padding: 0 10px;
+            }
+
+            .left-column, .right-column {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+
+            .right-column {
+                margin-left: 0;
+            }
+        }
+
+        .row > .column {
+            padding: 0 8px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: black;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .close {
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        .caption-container {
+            text-align: center;
+            background-color: black;
+            padding: 2px 16px;
+            color: white;
+        }
+
+        img.demo {
+            opacity: 0.6;
+        }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
+        img.hover-shadow {
+            transition: 0.3s;
+        }
+
+        .hover-shadow:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        /* Chat containers */
+.chat {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  margin-top: 20px;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.chat::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.chat img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.chat img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+/* Make sure that padding behaves as expected */
+* {box-sizing:border-box}
+
+/* Container for skill bars */
+.sb {
+  width: 100%; /* Full width */
+  background-color: #ddd; /* Grey background */
+}
+
+.skills {
+  text-align: right; /* Right-align text */
+  padding-top: 5px; /* Add top padding */
+  padding-bottom: 5px; /* Add bottom padding */
+  color: white; /* White text color */
+}
+
+.one {width: 85%; background-color: #434d94;}
+.two {width: 70%; background-color: #434d94;} 
+.three {width: 75%; background-color: #434d94;}
+.four {width: 65%; background-color: #434d94;}
+.five {width: 60%; background-color: #434d94;}
+.six {width: 65%; background-color: #434d94;} 
+.seven {width: 55%; background-color: #434d94;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #434d94;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: #434d94;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #434d94;
+}
+
+.show {
+  display: block;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.ibb.co/YjhT2WJ/Untitled2-20240612232545.png" alt="Logo">
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Does It Work...">
+            <img src="https://i.ibb.co/5Fs4VVK/Untitled4-20240612233636.png" alt="Search Icon">
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+  <a href="index.html">home</a>
+  <a href="about_me.html">about me</a>
+    <a href="blog.html">blog</a>
+  <a href="gallery.html">gallery</a>
+  <div class="dropdown">
+  <button class="dropbtn" onclick="myFunction()">more
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-content" id="myDropdown">
+    <a href="art.html">art</a>
+    <a href="record_store.html">record store</a>
+    <a href="video_store.html">video store</a>
+  </div>
+  </div> 
+</div>
+
+    <!-- Header Photo -->
+    <img src="https://i.ibb.co/SQnBZQd/Untitled-design-23.jpg" alt="Header Photo" class="header-photo">
+    
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Left Column -->
+        <section class="left-column">
+            <img src="https://i.ibb.co/L5x2SVF/Image-4.jpg" alt="Your Photo" class="profile-pic">
+            <div class="about-me">
+                <h2>???</h2>
+                <p>who could it be?</p>
+            </div>
+
+<!-- The grid: four columns -->
+<div class="row">
+  <div class="column">
+    <img src="https://i.ibb.co/ctbjP0J/ezgif-5-d32b2e5e01.gif" alt="Nature" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://i.ibb.co/cw0PFHJ/ezgif-7-74d14406f6.gif" alt="Snow" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://i.ibb.co/7Vy7YgH/ezgif-7-681ccdd5f1.gif" alt="Mountains" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://i.ibb.co/NmTJ7dN/ezgif-7-1877f49d1b.gif" alt="Lights" onclick="myFunction(this);">
+  </div>
+</div>
+
+<br>
+
+<button class="accordion">┆彡 carrd links</button>
+                        <div class="panel">
+                            <ul class="w3-ul w3-card-4">
+                                <li class="w3-display-container"><a href="https://ievstrse.carrd.co"> ; 1</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://iievstrse.carrd.co">; 2</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://iiievstrse.carrd.co">; 3</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://m-ievstrse.carrd.co">; 4</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://iiiiiiiiievstrse.carrd.co">; 5</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://iiiiiiiievstrse.carrd.co">; 6</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://corroded-coffin.carrd.co">; 7</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://acjiev.carrd.co/?fbclid=IwAR1McxsE20S3blDAt20IhwHTWjU-CKiqUhwPhL6U3VVT691W2okFRMlVZ1I">; 8</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://quiteunwell.carrd.co">; 10</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+                                <li class="w3-display-container"><a href="https://mortal-projections.carrd.co/?fbclid=IwZXh0bgNhZW0CMTAAAR3O6MU2RtNz92YtclOj97_6ytwtGFQcz54bma3N8XWXeQ-Vs7l9YyD8BhA_aem_ZmFrZWR1bW15MTZieXRlcw">; 10</a><span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+
+                            </ul>
+                        </div>
+
+        </section>
+
+        <!-- Right Column -->
+        <section class="right-column">
+            <div class="player">
+                <div class="album-cover">
+                    <img src="https://i.ibb.co/R3QFhh7/Total-Plays.jpg" alt="Album Cover">
+                </div>
+                <div class="playlist-container">
+                    <div class="playlist">
+                        
+                    </div>
+                </div>
+            </div>
+
+
+                <!-- Lightbox Section -->
+                <div class="row">
+                    <div class="column">
+                        <img src="https://i.ibb.co/52HX9cB/5-A0-D6-E64-328-C-44-C7-9-D88-39-BF8-DE3-B863.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow">
+                    </div>
+                    <div class="column">
+                        <img src="https://i.ibb.co/2ncW06D/08-C35371-A6-B8-4-D1-A-968-E-BDED13-F5-F4-DB-2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow">
+                    </div>
+                    <div class="column">
+                        <img src="https://i.ibb.co/KwcjsNx/61-A31-A80-C883-4058-9-E96-33-B8-E34-A26-AD-2.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow">
+                    </div>
+                    <div class="column">
+                        <img src="https://i.ibb.co/C6S7Vtd/682-A3-B3-E-9824-419-B-A244-810-CD8-C063-D7-2.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow">
+                    </div>
+                </div>
+
+                <!-- The Modal/Lightbox -->
+                <div id="myModal" class="modal">
+                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                    <div class="modal-content">
+                        <div class="mySlides">
+                            <img src="https://i.ibb.co/mbrx6J7/7-D12555-E-1-DAB-4-EEA-A8-F4-F858-BF48-D03-B.png" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <img src="https://i.ibb.co/1261nYY/8-B42-E40-B-F923-4402-BF12-92-CFE2-A0-D3-AD.png" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <img src="https://i.ibb.co/Fw9SdtR/96-A33-E77-874-F-4784-83-D8-5-F8223-A92-F05.png" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <img src="https://i.ibb.co/P4KFYjX/D51647-A1-75-F3-4469-BCC8-10-DC386097-B0-2.jpg" style="width:100%">
+                        </div>
+
+                        <!-- Next/previous controls -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <!-- Caption text -->
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+
+                        <!-- Thumbnail image controls -->
+                        <div class="column">
+                            <img class="demo" src="https://i.ibb.co/mbrx6J7/7-D12555-E-1-DAB-4-EEA-A8-F4-F858-BF48-D03-B.png" style="width:100%" onclick="currentSlide(1)">
+                        </div>
+                        <div class="column">
+                            <img class="demo" src="https://i.ibb.co/1261nYY/8-B42-E40-B-F923-4402-BF12-92-CFE2-A0-D3-AD.png" style="width:100%" onclick="currentSlide(2)">
+                        </div>
+                        <div class="column">
+                            <img class="demo" src="https://i.ibb.co/Fw9SdtR/96-A33-E77-874-F-4784-83-D8-5-F8223-A92-F05.png" style="width:100%" onclick="currentSlide(3)">
+                        </div>
+                        <div class="column">
+                            <img class="demo" src="https://i.ibb.co/P4KFYjX/D51647-A1-75-F3-4469-BCC8-10-DC386097-B0-2.jpg" style="width:100%" onclick="currentSlide(4)">
+                        </div>
+                    </div>
+                </div>
+
+<br>
+
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'una')">⊂⊃</button>
+  <button class="tablinks" onclick="openCity(event, 'pangalawa')">⊂⊃</button>
+    <button class="tablinks" onclick="openCity(event, 'pangatlo')">⊂⊃</button>
+    <button class="tablinks" onclick="openCity(event, 'pangapat')">⊂⊃</button>
+    <button class="tablinks" onclick="openCity(event, 'panglima')">⊂⊃</button>
+    <button class="tablinks" onclick="openCity(event, 'panganim')">⊂⊃</button>
+    <button class="tablinks" onclick="openCity(event, 'pangpito')">⊂⊃</button>
+
+</div>
+
+<!-- Tab content -->
+<div id="una" class="tabcontent">
+<p>dasutt</p>
+<div class="sb">
+  <div class="skills one"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/youth/1615763559?i=1615763857"></iframe>
+
+</div>
+</div>
+
+<div id="pangalawa" class="tabcontent">
+<p>eden</p>
+<div class="sb">
+  <div class="skills two"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/crash/1440854321?i=1440854388"></iframe>
+
+</div>
+</div>
+
+<div id="pangatlo" class="tabcontent">
+<p>blackbear</p>
+<div class="sb">
+  <div class="skills three"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/hell-is-where-i-dreamt-of-u-and-woke-up-alone/1576021199?i=1576021507"></iframe>
+
+</div>
+</div>
+
+<div id="pangapat" class="tabcontent">
+<p>sunset rollecoaster</p>
+<div class="sb">
+  <div class="skills four"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/no-mans-land/1437668575?i=1437668588"></iframe>
+
+</div>
+</div>
+
+<div id="panglima" class="tabcontent">
+<p>my chemical romance</p>
+<div class="sb">
+  <div class="skills five"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/cancer/1156310650?i=1156310772"></iframe>
+
+</div>
+</div>
+
+<div id="panganim" class="tabcontent">
+<p>mother mother</p>
+<div class="sb">
+  <div class="skills six"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/angry-sea/1107130719?i=1107130810"></iframe>
+
+</div>
+</div>
+
+<div id="pangpito" class="tabcontent">
+<p>ramones</p>
+<div class="sb">
+  <div class="skills seven"></div>
+
+<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ph/album/i-wanna-be-sedated/77817363?i=77817249"></iframe>
+
+</div>
+</div>
+
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3fR24Z3e1xzHshyfvUHCW6?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("dropdown-menu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        // Open the Modal
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Close the Modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            captionText.innerHTML = dots[slideIndex-1].alt;
+        }
+
+function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+
+    </script>
+</body>
+</html>
